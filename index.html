@@ -11,6 +11,51 @@
 
 
 <body>
+
+
+  <div id="root">
+  </div>
   
+  <script>
+    const root = document.getElementById('root');
+    const makeUl = document.createElement('ul');
+    root.appendChild(makeUl);
+    //makeUl.style.width = "100px";
+    //makeUl.style.height = "100px";
+    //makeUl.style.border = "1px solid black";
+
+    const ulStyleObject = ["width", "height", "border"];
+    const ulStyleValue = ["100px", "100px", "1px solid black"];
+    
+    //makeUl.style[ulStyleObject[0]] ="100px";
+    //makeUl.style[ulStyleObject[1]] ="100px";
+    //makeUl.style[ulStyleObject[2]] ="1px solid black"; 
+
+    /*for(let i = 0; i < ulStyleObject.length; i++){
+      makeUl.style[ulStyleObject[i]] = "100px";
+    }*/
+
+
+    let domStyle = {
+      firstArray: ["width", "height", "border"],
+      secondArray: ["100px", "100px", "1px solid black"],
+      element: root.children[0]
+    }
+    function twoArrayDOMstyle(firstArray, secondArray, element){
+      for(let i = 0; i < firstArray.length; i++){
+      element.style[firstArray[i]] = secondArray[i];
+      } 
+    }
+    
+    //twoArrayDOMstyle(ulStyleObject,ulStyleValue,makeUl);
+    
+    function oneObjectDOMStyle(object){
+      for(let i = 0; i < object.firstArray.length; i++){
+      object.element.style[object.firstArray[i]] = object.secondArray[i];
+      } 
+    }
+  </script>
+
+
 </body>
 </html>
