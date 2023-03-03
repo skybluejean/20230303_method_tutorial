@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤난수맞추기게임</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 게임시작 버튼 클릭 이벤트
+            $("#btnStart").click(function() {
+                // 게임영역 초기화
+                $("#gameArea").empty();
+
+                // 랜덤난수 부여
+                var randomNumber = Math.floor(Math.random() * 101);
+                $("#randomNumber").val(randomNumber);
+
+                // 정답카운트 초기화
+                $("#resultCount").val("0");
+
+                // 게임 영역 생성
+                $("#gameArea").append("<p>1 ~ 100까지 랜덤한 숫자를 생성되었습니다. 숫자를 입력하여 맞춰주세요.</p>");
+                $("#gameArea").append("<input type='text' id='txtAnswer'></input>  ");
+                $("#gameArea").append("<button id='btnAnswer' onclick='randomAnswerSubmission();'>정답제출</button>");
+            });
+        });
+
+        // 정답제출 함수
+        function randomAnswerSubmission() {
+            var randomValue = $("#randomNumber").val();     // 랜덤난수
+            var txtAnswer = $("#txtAnswer").val();          // 입력한 정답
+            var resultCount = $("#resultCount").val();
+
+            // 정답
+            if(randomValue == txtAnswer) {
+                $("#gameArea").append("<p>정답은 " + randomValue + "입니다. " + resultCount + "번만에 정답을 맞췄습니다.</p>");                
+            } 
+            // 오답(작은 수 입력)
+            else if (Number(randomValue) > Number(txtAnswer)) {
+                resultCount = Number(resultCount) + 1;
+                $("#resultCount").val(String(resultCount));
+                $("#gameArea").append("<p>정답은" + txtAnswer + "보다 큰 수 입니다.</p>");   
+            } 
+            // 오답(큰 수 입력)
+            else if (Number(randomValue) < Number(txtAnswer)) {
+                resultCount = Number(resultCount) + 1;
+                $("#resultCount").val(String(resultCount));
+                $("#gameArea").append("<p>정답은" + txtAnswer + "보다 작은 수 입니다.</p>");  
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>랜덤 난수 맞추기 게임입니다. <br>
+      게임을 시작하려면 아래 버튼을 눌러주세요.</h1>
+    <button id="btnStart">게임시작</button>
+    <input id="randomNumber" type="hidden"></input>    
+    <input id="resultCount" type="hidden"></input>
+    <div id="gameArea">
+    </div>
+</body>
+</html>

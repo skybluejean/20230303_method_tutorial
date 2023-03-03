@@ -10,6 +10,34 @@
 
 
 <body>
+  <div id="root">
+  </div>
+
+  <script>
+    const root = document.getElementById("root");
+    console.log(typeof(root.style));
+
+
+
+    //python과 js에 동일하게 적용되는 예시
+    for(let junbrother in root.style){
+      console.log(junbrother);
+      if(junbrother === "width"){
+        junbrother === "100px";
+        //위의 junbrother === "100px";와 동일
+        //element.style.width = "100px";
+      }else{
+        console.error("없어용");
+      }
+    }
+
+    for(let junbrother in root.style){
+      if(junbrother === "content"){
+        junbrother === "hello";
+      }
+    }
+
+  </script>
   
 </body>
 </html>
